@@ -90,7 +90,6 @@ const onSearchFormSubmit = async event => {
     console.log(err);
   } finally {
     hideLoader();
-    refs.form.reset();
   }
 };
 
@@ -104,6 +103,18 @@ const onLoadMoreBtnClick = async event => {
       .map(img => createGalleryCardMarkup(img))
       .join('');
     refs.gallery.insertAdjacentHTML('beforeend', galleryCardsTemplate);
+
+    setTimeout(() => {
+      const firstElement = refs.gallery.firstElementChild;
+      console.log(firstElement);
+      const itemHeight = firstElement.getBoundingClientRect().height;
+
+      window.scrollBy({
+        top: itemHeight * 2,
+        behavior: 'smooth',
+      });
+      // lightbox
+    }, 0);
 
     const totalPages = Math.ceil(data.totalHits / 15);
 
