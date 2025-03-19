@@ -102,35 +102,46 @@ main {
 .loader {
     width: 48px;
     height: 48px;
-    border: 3px solid #FFF;
     border-radius: 50%;
-    display: inline-block;
     position: relative;
-    box-sizing: border-box;
-    animation: rotation 1s linear infinite;
+    animation: rotate 1s linear infinite
 }
 
-.loader::after {
-    content: '';
+.loader::before {
+    content: "";
     box-sizing: border-box;
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 56px;
-    height: 56px;
+    inset: 0px;
     border-radius: 50%;
-    border: 3px solid transparent;
-    border-bottom-color: #FF3D00;
+    border: 5px solid #FFF;
+    animation: prixClipFix 2s linear infinite;
 }
 
-@keyframes rotation {
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes prixClipFix {
     0% {
-        transform: rotate(0deg);
+        clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0)
+    }
+
+    25% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0)
+    }
+
+    50% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%)
+    }
+
+    75% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%)
     }
 
     100% {
-        transform: rotate(360deg);
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0)
     }
 }
 

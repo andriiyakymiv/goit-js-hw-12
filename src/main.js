@@ -6,7 +6,7 @@ import iconError from './img/icon/icon-error.svg';
 const refs = {
   searchForm: document.querySelector('.form'),
   gallery: document.querySelector('.gallery'),
-  backdrop: document.querySelector('.loader'),
+  loader: document.querySelector('.loader'),
   loadMoreBtn: document.querySelector('.js-load-more-btn'),
 };
 
@@ -15,12 +15,12 @@ let query = '';
 
 // Function to show loader
 const showLoader = () => {
-  refs.backdrop.classList.remove('is-hidden');
+  refs.loader.classList.remove('is-hidden');
 };
 
 // Function to hide loader
 const hideLoader = () => {
-  refs.backdrop.classList.add('is-hidden');
+  refs.loader.classList.add('is-hidden');
 };
 
 // Retrieving data from the server to create a gallery
