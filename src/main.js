@@ -23,9 +23,6 @@ const hideLoader = () => {
   refs.backdrop.classList.add('is-hidden');
 };
 
-//function to delet the load button
-// const loadBtnShow = () => refs.loadMoreBtn.classList.remove('is-hidden');
-
 // Retrieving data from the server to create a gallery
 
 const onSearchFormSubmit = async event => {
