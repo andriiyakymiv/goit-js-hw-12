@@ -7,7 +7,11 @@ const refs = {
   searchForm: document.querySelector('.form'),
   gallery: document.querySelector('.gallery'),
   backdrop: document.querySelector('.backdrop'),
+  loadMoreBtn: document.querySelector('.js-load-more-btn'),
 };
+
+let page = 1;
+let query = '';
 
 // Function to show loader
 const showLoader = () => {
@@ -25,14 +29,18 @@ const onSearchFormSubmit = async event => {
   try {
     event.preventDefault();
 
-    const query = event.currentTarget.elements.search_text.value.trim();
+    query = event.currentTarget.elements.search_text.value.trim();
 
     if (query === '') {
       alert('Enter text in the search field');
       return;
     }
 
-    const { data } = await fetchPhotosByQuery(query);
+    page = 1;
+
+    const { data } = await fetchPhotosByQuery(query, page);
+
+    console.log(data);
 
     if (data.hits.length === 0) {
       iziToast.error({
@@ -52,6 +60,8 @@ const onSearchFormSubmit = async event => {
 
       refs.gallery.innerHTML = ''; //cleaning the gallery
 
+      refs.loadMoreBtn.classList.add('is-hidden'); // приховуємо кнопку
+
       return;
     }
 
@@ -60,11 +70,37 @@ const onSearchFormSubmit = async event => {
       .join('');
 
     refs.gallery.innerHTML = galleryCardsTemplate;
+
+    refs.loadMoreBtn.classList.remove('is-hidden');
+    refs.loadMoreBtn.addEventListener('click', onLoadMoreBtnClick);
+
     createLightBox();
 
     refs.searchForm.reset();
 
     // showLoader();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const onLoadMoreBtnClick = async event => {
+  try {
+    page++;
+
+    const { data } = await fetchPhotosByQuery(query, page);
+
+    const galleryCardsTemplate = data.hits
+      .map(img => createGalleryCardMarkup(img))
+      .join('');
+    refs.gallery.insertAdjacentHTML('beforeend', galleryCardsTemplate);
+
+    const totalPages = Math.ceil(data.totalHits / 15);
+
+    if (totalPages === page) {
+      refs.loadMoreBtn.classList.add('is-hidden');
+      refs.loadMoreBtn.removeEventListener('click', onLoadMoreBtnClick);
+    }
   } catch (err) {
     console.log(err);
   }
