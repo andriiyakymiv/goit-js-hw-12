@@ -1,4 +1,5 @@
 import SimpleLightbox from 'simplelightbox';
+
 export const createGalleryCardMarkup = ({
   webformatURL: linkSmallImg,
   largeImageURL: linkLargeImg,
