@@ -23,6 +23,9 @@ const hideLoader = () => {
   refs.backdrop.classList.add('is-hidden');
 };
 
+//function to delet the load button
+// const loadBtnShow = () => refs.loadMoreBtn.classList.remove('is-hidden');
+
 // Retrieving data from the server to create a gallery
 
 const onSearchFormSubmit = async event => {
@@ -71,8 +74,16 @@ const onSearchFormSubmit = async event => {
 
     refs.gallery.innerHTML = galleryCardsTemplate;
 
-    refs.loadMoreBtn.classList.remove('is-hidden');
-    refs.loadMoreBtn.addEventListener('click', onLoadMoreBtnClick);
+    const totalPages = Math.ceil(data.totalHits / 15);
+    console.log(totalPages);
+
+    if (totalPages > 1) {
+      refs.loadMoreBtn.classList.remove('is-hidden');
+      refs.loadMoreBtn.addEventListener('click', onLoadMoreBtnClick);
+      return;
+    }
+
+    refs.loadMoreBtn.classList.add('is-hidden');
 
     createLightBox();
 
