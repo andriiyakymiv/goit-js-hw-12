@@ -71,7 +71,6 @@ const onSearchFormSubmit = async event => {
     refs.gallery.innerHTML = galleryCardsTemplate;
 
     const totalPages = Math.ceil(data.totalHits / 15);
-    console.log(totalPages);
 
     if (totalPages > 1) {
       refs.loadMoreBtn.classList.remove('is-hidden');
@@ -106,7 +105,6 @@ const onLoadMoreBtnClick = async event => {
 
     setTimeout(() => {
       const firstElement = refs.gallery.firstElementChild;
-      console.log(firstElement);
       const itemHeight = firstElement.getBoundingClientRect().height;
 
       window.scrollBy({
