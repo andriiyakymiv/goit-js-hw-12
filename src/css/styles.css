@@ -257,3 +257,29 @@ width: 100%;
     letter-spacing: 0.04em;
     color: #2e2f42;
 }
+
+/* Button Load more */
+
+.load-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 32px;
+}
+
+.load-more-btn {
+    border-style: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    background: #4e75ff;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    color: #ffffff;
+
+    &:hover {
+        background: #6c8cff;
+    }
+
+}
