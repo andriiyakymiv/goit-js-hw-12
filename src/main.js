@@ -6,7 +6,7 @@ import iconError from './img/icon/icon-error.svg';
 const refs = {
   searchForm: document.querySelector('.form'),
   gallery: document.querySelector('.gallery'),
-  backdrop: document.querySelector('.backdrop'),
+  backdrop: document.querySelector('.loader'),
   loadMoreBtn: document.querySelector('.js-load-more-btn'),
 };
 
