@@ -26,6 +26,7 @@ const hideLoader = () => {
 // Retrieving data from the server to create a gallery
 
 const onSearchFormSubmit = async event => {
+  showLoader();
   try {
     event.preventDefault();
 
@@ -39,8 +40,6 @@ const onSearchFormSubmit = async event => {
     page = 1;
 
     const { data } = await fetchPhotosByQuery(query, page);
-
-    console.log(data);
 
     if (data.hits.length === 0) {
       iziToast.error({
@@ -89,6 +88,9 @@ const onSearchFormSubmit = async event => {
     // showLoader();
   } catch (err) {
     console.log(err);
+  } finally {
+    hideLoader();
+    refs.form.reset();
   }
 };
 
@@ -108,6 +110,9 @@ const onLoadMoreBtnClick = async event => {
     if (totalPages === page) {
       refs.loadMoreBtn.classList.add('is-hidden');
       refs.loadMoreBtn.removeEventListener('click', onLoadMoreBtnClick);
+      iziToast.info({
+        message: `We're sorry, but you've reached the end of search results`,
+      });
     }
   } catch (err) {
     console.log(err);
