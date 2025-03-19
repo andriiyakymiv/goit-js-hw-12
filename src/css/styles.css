@@ -1,0 +1,259 @@
+@import "izitoast/dist/css/iziToast.min.css";
+@import "simplelightbox/dist/simple-lightbox.min.css";
+
+/* Reset */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    height: auto;
+}
+
+input,
+textarea,
+button {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* Global */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+main {
+    overflow-x: hidden;
+}
+
+/* Backdrop  */
+
+.backdrop {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.is-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+
+    
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+/* Loader */
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 3px solid #FFF;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+.loader::after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-bottom-color: #FF3D00;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Form */
+
+.search__form-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 36px;
+    padding-bottom: 32px;
+}
+
+.form {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.search__form-input {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 8px;
+    width: 272px;
+    height: 40px;
+    padding: 8px 16px;
+    outline: transparent;
+    border-radius: 4px;
+    border: 1px solid #808080;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    color: #808080;
+    transition: border linear 100ms;
+
+    &:hover, &:focus {
+        border: 1px solid #000000;
+    }
+}
+
+.search__form-button {
+    border-style: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    background: #4e75ff;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    color: #ffffff;
+
+    &:hover{
+        background: #6c8cff;
+    }
+
+}
+
+/* Gallery */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    gap: 24px;
+}
+
+/* Card */
+.gallery-images {
+    object-fit: cover;
+    width: 100%;
+    height: 200px;
+    border: 1px solid #808080;
+    
+}
+
+.gallery-items {
+    position: relative;
+    width: 360px;
+    flex-basis: calc((1128px - 24px * 2) / 3);
+    cursor: pointer;
+}
+
+.gallery-info {
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+width: 100%;
+    height: 48px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #808080;
+    border-left: 1px solid #808080;
+    border-right: 1px solid #808080;
+    background: #ffffff;
+}
+
+.gallery-info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.gallery-info-title {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.33333;
+    letter-spacing: 0.04em;
+    color: #2e2f42;
+}
+
+.gallery-info-value {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 2;
+    letter-spacing: 0.04em;
+    color: #2e2f42;
+}
